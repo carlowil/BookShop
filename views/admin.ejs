@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Admin Panel</title>
+        <script type="text/javascript" src="jq.js"></script>
+        <script type="text/javascript" src="delete-book.js"></script>
+        <script type="text/javascript" src="search.js"></script>
+        <script type="text/javascript" src="sort-by-genre.js"></script>
+        <link rel="stylesheet" href="bootstrap.css" type="text/css">
+        <style>
+            .text-small {
+                font-size: 85%;
+            }
+            .dropdown-toggle:not(:focus) {
+                outline: 0;
+            }
+            .log-out-a {
+                color: inherit;
+                text-decoration: none;
+            }
+            .add-book {
+                position: fixed;
+                width: 160px;
+                bottom: 0;
+                right: 0;
+                margin-right: 32px;
+                margin-bottom: 32px;
+            }
+            main {
+                width: 1300px;
+                margin: 0 auto;
+                min-height: 600px;
+            }
+            .cards-div {
+                width: 1200px;
+                margin: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <header class="p-3 mb-3 border-bottom">
+            <div class="container">
+                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                        <li><a href="/admin" class="nav-link px-2 link-secondary">Books</a></li>
+                        <li><a href="/users" class="nav-link px-2 link-body-emphasis">Users</a></li>
+                        <li><a href="/reviews" class="nav-link px-2 link-body-emphasis">Reviews</a></li>
+                    </ul>
+            
+                    <form id="search-form" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" style="display: flex;">
+                        <label class="form-genre-label" for="book-genres" style="margin-top: 5px; margin-right: 10px;">
+                            Genre:
+                          </label>
+                        <select class="form-control" id="book-genres" style="margin-right: 20px;">
+                            <option value="All">All</option>
+                            <option value="Biography">Biography</option>
+                            <option value="Mystery">Mystery</option>
+                            <option value="Romance">Romance</option>
+                            <option value="Fantasy">Fantasy</option>
+                            <option value="Adventure">Adventure</option>
+                            <option value="Horror">Horror</option>
+                            <option value="Literacy fiction">Literacy fiction</option>
+                            <option value="Manga">Manga</option>
+                            <option value="Comics">Comics</option>
+                        </select>
+                        <input id="search-input" type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                    </form>
+            
+                    <div class="text-end">
+                        <a href="/logout" class="btn btn-primary">Log Out</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="row row-cols-4 row-cols-md-4 g-4 cards-div">
+                <% for(let i = 0; i < data.length; i++) {%>
+                    <div class="col">
+                        <div class="card h-100 my-card" data-id="<%=data[i].id%>">
+                            <img src="<%=data[i].image%>" class="card-img-top" alt="<%=data[i].image%>" style="height: 400px;">
+                            <div class="card-body">
+                                <h6 class="card-title"><%=data[i].name%></h6>
+                                <div class="book_genre" data-genre="<%=data[i].genres%>">
+
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="btn-group d-flex">
+                                        <button type="button" class="btn btn-danger btn-delete .w-100">Delete</button>
+                                        <a href="/admin/book/<%=data[i].id%>" class="btn btn-primary .w-100 btn-chg">Change</a>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="button" class="btn btn-secondary mt-2 btn-dis" style="width: 243px;">Disable</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                <%}%>
+            </div>
+        </main>
+        <a href="/add" class="btn btn-primary add-book">Add book</a>
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <p class="col-md-4 mb-0 text-muted" style="margin-left: 32px;">&copy; 2024 Sizov Matvey</p>
+            <ul class="nav col-md-4 justify-content-end" style="margin-right: 32px;">
+              <li class="nav-item"><a href="/admin" class="nav-link px-2 text-muted">Admin</a></li>
+              <li class="nav-item"><a href="/users" class="nav-link px-2 text-muted">Users</a></li>
+            </ul>
+        </footer>
+    </body>
+</html>

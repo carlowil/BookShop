@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Admin Panel</title>
+        <script type="text/javascript" src="/jq.js"></script>
+        <script type="text/javascript" src="/red-book.js"></script>
+        <link rel="stylesheet" href="/bootstrap.css" type="text/css">
+        <style>
+            .text-small {
+                font-size: 85%;
+            }
+
+            .dropdown-toggle:not(:focus) {
+                outline: 0;
+            }
+            .log-out-a {
+                color: inherit;
+                text-decoration: none;
+            }
+            .form-div {
+                width: 450px;
+                padding: 10px;
+            }
+            main {
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+            }
+            .error {
+                width: 400px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <header class="p-3 mb-3 border-bottom">
+            <div class="container">
+                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                        <li><a href="/admin" class="nav-link px-2 link-secondary">Books</a></li>
+                        <li><a href="/users" class="nav-link px-2 link-body-emphasis">Users</a></li>
+                        <li><a href="/reviews" class="nav-link px-2 link-body-emphasis">Reviews</a></li>
+                    </ul>
+            
+                    <div class="text-end">
+                        <button type="button" class="btn btn-primary"><a class="log-out-a" href="/logout">Log Out</a></button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="alert-wrapper">
+                <div class="error alert alert-danger" role="alert" style="display: none;">
+                            
+                </div>
+            </div>
+            <div class="form-div">
+                <form
+                id="red_book">
+                    <div class="form-group" data-id="<%=data._id%>">
+                        <div class="row">
+                            <div class="col">
+                                <label for="book-name" class="mb-2">Book name</label>
+                                <input value="<%=data.name%>" type="text" class="form-control" id="book-name" aria-describedby="Book name" placeholder="Book name">
+                            </div>
+                            <div class="col">
+                                <label for="book-year" class="mb-2">Publishing year</label>
+                                <input type="number" value="<%=data.pub_year%>" min="0" class="form-control" id="book-year" aria-describedby="Book publishing year" placeholder="Book publishing year">
+                            </div>
+                        </div>
+                        <label for="book-author" class="mt-2 mb-2">Author</label>
+                        <input type="text" value="<%=data.author%>" class="form-control" id="book-author" aria-describedby="Book author" placeholder="Author">
+                        <label for="book-desc" class="mt-2 mb-2">Description</label>
+                        <textarea type="text" class="form-control" id="book-desc" rows="3" placeholder="Write description hear"><%=data.description%></textarea>
+                        <label for="book-genres" class="mt-2 mb-2">Genres</label>
+                        <select multiple class="form-control" id="book-genres">
+                            <option value="Biography">Biography</option>
+                            <option value="Mystery">Mystery</option>
+                            <option value="Romance">Romance</option>
+                            <option value="Fantasy">Fantasy</option>
+                            <option value="Adventure">Adventure</option>
+                            <option value="Horror">Horror</option>
+                            <option value="Literacy fiction">Literacy fiction</option>
+                            <option value="Manga">Manga</option>
+                            <option value="Comics">Comics</option>
+                          </select>
+                        <input type="file" name="image" class="form-control-file mt-3" id="image">
+                        <button type="submit" class="btn btn-primary mt-2">Change Book</button>
+                      </div>
+                </form>
+            </div>
+        </main>
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <p class="col-md-4 mb-0 text-muted" style="margin-left: 32px;">&copy; 2024 Sizov Matvey</p>
+            <ul class="nav col-md-4 justify-content-end" style="margin-right: 32px;">
+              <li class="nav-item"><a href="/admin" class="nav-link px-2 text-muted">Admin</a></li>
+              <li class="nav-item"><a href="/users" class="nav-link px-2 text-muted">Users</a></li>
+            </ul>
+        </footer>
+    </body>
+</html>
